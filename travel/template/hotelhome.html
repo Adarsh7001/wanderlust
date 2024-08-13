@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+<style>
+    body {
+        font-family: 'Arial, sans-serif';
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: white;
+    }
+    .form-container {
+        background-color: rgb(16, 18, 19);
+        color: gold;
+        padding: 30px;
+        width: 500px;
+        margin: 50px auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .form-group {
+        margin: 20px 0;
+        text-align: center;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        color: gold;
+    }
+    .form-control {
+        width: 90%;
+        padding: 12px;
+        border-radius: 10px;
+        background-color: transparent;
+        color: gold;
+        border: 2px solid rgb(116, 125, 128);
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        display: block;
+        margin: 0 auto;
+    }
+    .form-control::placeholder {
+        color: rgb(219, 206, 90);
+    }
+    .form-control:hover, .form-control:focus {
+        background-color: gold;
+        color: black;
+        border-color: gold;
+        outline: none;
+    }
+    .form-control[type="submit"] {
+        width: auto;
+        padding: 12px 24px;
+        background-color: gold;
+        color: black;
+        margin: 20px auto;
+        display: block;
+        font-weight: bold;
+        border: 2px solid gold;
+        border-radius: 10px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        cursor: pointer; /* Add pointer cursor for better UX */
+    }
+    .form-control[type="submit"]:hover {
+        background-color: darkgoldenrod;
+        color: black;
+        border-color: darkgoldenrod; /* Ensure border color changes on hover */
+    }
+    .form-control[type="submit"]:active {
+        background-color: darkgoldenrod;
+        color: black;
+    }
+    h2 {
+        text-align: center;
+        color: gold;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block title %}
+<title>Hotel Home</title>
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>Search Hotels</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="destination">Destination</label>
+                <input type="text" id="destination" name="d" placeholder="Enter destination" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="checkin">Check-In Date</label>
+                <input type="date" id="checkin" name="cin" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="checkout">Check-Out Date</label>
+                <input type="date" id="checkout" name="cout" class="form-control" required>
+            </div>
+            <button type="submit" class="form-control">Search</button>
+        </form>
+    </div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
+
+
+
+

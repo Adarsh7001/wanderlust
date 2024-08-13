@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container" style="color: white; background-color: rgb(16, 18, 19); padding: 20px; border-radius: 10px; margin-top:55px; margin-bottom:55px; width:50%;text-align:center;">
+    <h1 style="color: rgb(219, 206, 90);">Payment Status:</h1>
+    
+    {% if status %}
+        <p>Your payment was successful! Thank you for your booking.</p>
+        <a href="{% url 'website:bookings_view' %}" class="btn btn-success" style="background-color: rgb(219, 206, 90); color: black;">View Your Bookings</a>
+    {% else %}
+        <p>Unfortunately, your payment failed. Please try again.</p>
+    {% endif %}
+</div>
+{% endblock %}

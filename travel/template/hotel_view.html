@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .font {
+            font-family: serif;
+        }
+        .card {
+            background-color: rgb(16, 18, 19);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 75px;
+            margin-bottom: 75px;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+       .btn-black {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 8px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+        .btn-black:hover {
+            background-color: gold;
+            color: black;
+            border-color: gold;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    <title>hotelview</title>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-bottom:75px;">
+    <div class="row">
+        <div class="col-sm-3">
+                <div class="card">
+                    <img src="{{ h.hotel_image.url }}" class="card-img-top" alt="Package Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ h.name_of_hotel }}</h5>
+                        <h5 class="card-title">Rs. {{ h.price }} / night</h5>
+                    </div>
+                </div>
+        </div>
+        <div class="col-sm-8">
+            <p class="font" style="color:rgb(219, 206, 90);font-size:40px;text-align:center;margin-top:55px;">HOTEL DETAILS:</p>
+            <p>{{h.description}}</p>
+            <p>Room Amenities : {{h.room_amenities}}</p>
+            <p>Maximum Number Of Guests Allowed : {{h.maximum_number_of_guests}}</p>
+            <a href="{% url 'website:bookservice' service_type='hotel' service_id=h.id %}"><button class="btn-black">Book</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

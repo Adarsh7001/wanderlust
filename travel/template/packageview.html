@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .font {
+            font-family: serif;
+        }
+        .card {
+            background-color: rgb(16, 18, 19);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            text-align: center;
+            font-size: 0.9em;
+            width: 450px;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 15px;
+        }
+        .card-title {
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        }
+        .btn-black {
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            padding: 8px 20px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            display: block;
+            margin: 0 auto;
+            text-decoration: none;
+        }
+        .btn-black:hover {
+            background-color: gold;
+            color: black;
+            border-color: gold;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    <title>packageview</title>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-bottom:75px;">
+    <div class="row">
+        <div class="col-sm-12">
+                <div class="card">
+                    <img src="{{ p.image.url }}" class="card-img-top" alt="Package Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ p.package_name }}</h5>
+                        <h5 class="card-title">Rs. {{ p.price }} / per head</h5>
+                    </div>
+                </div>
+        </div>
+        <div style="margin-left:40px;margin-right:50px;" class="container">
+            <p class="font" style="color:rgb(219, 206, 90);font-size:40px;text-align:center;margin-top:10px;">About The Package</p>
+            <p class="font">{{ p.description }}</p>
+            <p>Places Covered : {{ p.places }}</p>
+            <p>Service Included : {{ p.services_included }}</p>
+            <p>Services Excluded : {{ p.services_excluded }}</p>
+            <p>Starting Date : {{ p.start_date }}</p>
+            <p>Ending Date : {{ p.end_date }}</p>
+            <p>Duration : {{ p.duration }}</p>
+
+
+            <a href="{% url 'website:bookservice' service_type='package' service_id=p.id %}"><button class="btn-black">Book</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

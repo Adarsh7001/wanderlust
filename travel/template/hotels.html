@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .card {
+        background-color: rgb(16, 18, 19);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 20px;
+        transition: box-shadow 0.3s, border-color 0.3s;
+        text-align: center;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .card-body {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        text-decoration: none;
+    }
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    .card:hover {
+        box-shadow: 0 0 10px gold;
+        border-color: gold;
+    }
+    .card:hover .card-title {
+        color: gold;
+    }
+</style>
+{% endblock %}
+
+{% block title %}
+<title>Hotels</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for i in hotels %}
+        <div class="col-sm-3">
+            <a href="{% url 'hotel:hotelview' i.id %}" class="card-link">
+                <div class="card">
+                    <img src="{{ i.hotel_image.url }}" class="card-img-top" alt="Hotel Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.name }}</h5>
+                        <h5 class="card-title">Rs. {{ i.price }}</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

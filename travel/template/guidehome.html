@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .font{
+    font-family:serif;}
+    .card {
+        background-color: rgb(16, 18, 19);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px;
+        transition: box-shadow 0.3s, border-color 0.3s;
+        text-align: center;
+        font-size: 0.9em;
+        margin-top:75px;
+        margin-bottom:25px;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .card-title {
+        font-size: 1em;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    .card:hover {
+        box-shadow: 0 0 10px gold;
+        border-color: gold;
+    }
+    .card:hover .card-title {
+        color: gold;
+    }
+</style>
+{% endblock %}
+
+{% block title %}
+<title>guide home</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+     <h1 style="font-size:60px;color:rgb(219, 206, 90);margin-top:75px;">Planning Your trip By Yourself ?
+     </h1>
+        <h1 style="font-size:60px;color:rgb(219, 206, 90);">Are You Confused ?</h1>
+        <h1 style="font-size:60px;color:rgb(85, 90, 92);">Get A Personalized Session With our Experts,</h1>
+        <h1 style="font-size:60px;color:rgb(219, 206, 90);">Meet Our Guides;</h1>
+    </div>
+</div>
+<div class="container" style="margin-bottom:75px;">
+    <div class="row">
+        {% for i in g %}
+        <div class="col-sm-3">
+            <a href="{% url 'guide:guideview' i.id %}" class="card-link">
+                <div class="card">
+                    <img src="{{ i.image.url }}" class="card-img-top" alt="Package Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.guide_name }}</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div>
+    <p style="margin-left:95px;margin-right:95px;margin-bottom:30px;"> Getting a personalized session with a travel guide offers several distinct advantages that enhance the overall travel experience. Unlike generic tours, a personalized session is tailored specifically to your interests, preferences, and needs, ensuring that every aspect of your trip aligns with your desires. This bespoke approach allows the guide to focus on the destinations and activities that matter most to you, whether it's exploring hidden gems, diving into local culture, or indulging in unique experiences. Additionally, a personal guide can provide insightful recommendations and insider knowledge that you might not find in standard travel resources, leading to a more enriching and authentic experience. This level of customization not only maximizes your enjoyment but also saves you time and effort, as the guide handles planning and logistics, allowing you to fully immerse yourself in the adventure.</p>
+<h3 style="color:rgb(219, 206, 90)">After booking a guide of your choice,you will recieve call on your given mobile within 1 hour.</h3>
+</div>
+{% endblock %}

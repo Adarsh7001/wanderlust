@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<style>
+    footer {
+        background-color: rgb(0, 0, 0) !important;
+        border-top: 1px solid rgb(219, 206, 90) !important;
+    }
+
+    footer a {
+        text-decoration: none !important;
+        color: white !important;
+    }
+
+    footer a:hover {
+        color: rgb(219, 206, 90) !important;
+    }
+
+    footer .btn-outline-primary {
+        color: white !important;
+        border-color: rgb(219, 206, 90) !important;
+        margin-right: 10px !important;
+    }
+
+    footer .btn-outline-primary:hover {
+        color: white !important;
+        background-color: rgb(219, 206, 90) !important;
+        border-color: rgb(219, 206, 90) !important;
+    }
+
+    footer .fab, footer .fa-brands {
+        color: white !important;
+    }
+
+    footer .btn-outline-primary:hover .fab, footer .btn-outline-primary:hover .fa-brands {
+        color: white !important;
+    }
+
+    footer h5, footer h6, footer h1 {
+        color: rgb(219, 206, 90) !important;
+    }
+
+    footer p {
+        color: white !important;
+    }
+
+    footer .fa-map-marker-alt, footer .fa-phone-alt, footer .fa-envelope {
+        color: rgb(219, 206, 90) !important;
+    }
+
+    footer .fa-map-marker-alt, footer .fa-phone-alt, footer .fa-envelope {
+        margin-right: 5px !important;
+    }
+
+    .input-group-append .btn {
+        border-radius: 0 0.25rem 0.25rem 0 !important;
+    }
+
+    .input-group .form-control {
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+
+    .d-flex .btn {
+        margin-right: 15px !important;
+    }
+
+    @media (min-width: 768px) {
+        .input-group {
+            display: flex;
+            justify-content: center;
+        }
+
+        .input-group .form-control,
+        .input-group-append .btn {
+            width: auto;
+        }
+    }
+</style>
+    {% block style %}
+    {% endblock %}
+    {% block title %}
+    <title>Title</title>
+    {% endblock %}
+    <header>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row align-items-center" style="height:70px;">
+            <div class="col-sm-4 d-flex custom-icons">
+                <i class="fa-solid fa-envelope"></i> <span>info@example.com</span>
+                <i class="fa-solid fa-mobile"></i> <span>+012 345 6789</span>
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-6 text-end d-flex justify-content-end custom-icons">
+                <i class="fa-brands fa-square-facebook"></i>
+                <i class="fa-brands fa-square-instagram"></i>
+                <i class="fa-brands fa-square-twitter"></i>
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+        </div>
+    </div>
+
+<!--pages-->
+
+<!--navbar-->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">WANDERLUST</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'website:home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Services
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'hotel:hotelhome' %}">Hotels</a></li>
+                        <li><a class="dropdown-item" href="{% url 'package:packagehome' %}">Packages</a></li>
+                        <li><a class="dropdown-item" href="{% url 'guide:guidehome' %}">Travel Guide</a></li>
+                    </ul>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'website:contact' %}">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'website:user_logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'website:register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'website:user_login' %}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--navbar-->
+
+    </header>
+<!--    header end-->
+
+    <!-- Footer Start -->
+
+
+{% block content %}
+{% endblock %}
+<footer>
+    <div class="container-fluid bg-dark text-white py-5 px-sm-3 px-lg-5" style="margin-top: 90px; background-color: rgb(0, 0, 0) !important; border-top: 1px solid rgb(219, 206, 90) !important;">
+        <div class="row pt-5">
+            <div class="col-lg-3 col-md-6 mb-5">
+                <a href="" class="navbar-brand">
+                    <h1 class="text-primary" style="color: rgb(219, 206, 90) !important;"><span style="color: white !important;">WANDER</span>LUST</h1>
+                </a>
+                <p class="text-white">Sed ipsum clita tempor ipsum ipsum amet sit ipsum lorem amet labore rebum lorem ipsum dolor. No sed vero lorem dolor dolor</p>
+                <h6 class="mt-4 mb-3" style="color: rgb(219, 206, 90) !important; letter-spacing: 5px;">Follow Us</h6>
+                <div class="d-flex justify-content-start">
+                    <a class="btn btn-outline-primary btn-square mr-3" href="#"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-3" href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary btn-square mr-3" href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-uppercase mb-4" style="color: rgb(219, 206, 90) !important; letter-spacing: 5px;">Our Services</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
+                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-uppercase mb-4" style="color: rgb(219, 206, 90) !important; letter-spacing: 5px;">Useful Links</h5>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Destination</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Services</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Packages</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Guides</a>
+                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Testimonial</a>
+                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Blog</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <h5 class="text-uppercase mb-4" style="color: rgb(219, 206, 90) !important; letter-spacing: 5px;">Contact Us</h5>
+                <p class="text-white"><i class="fa fa-map-marker-alt mr-2" style="color: rgb(219, 206, 90) !important;"></i><span style="margin-left: 5px;">123 Street, New York, USA</span></p>
+                <p class="text-white"><i class="fa fa-phone-alt mr-2" style="color: rgb(219, 206, 90) !important;"></i><span style="margin-left: 5px;">+012 345 67890</span></p>
+                <p class="text-white"><i class="fa fa-envelope mr-2" style="color: rgb(219, 206, 90) !important;"></i><span style="margin-left: 5px;">info@example.com</span></p>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-white py-4 px-sm-3 px-md-5" style="background-color: rgb(0, 0, 0) !important;">
+        <div class="row">
+            <div class="col-lg-6 text-center text-md-left mb-3 mb-md-0">
+                <p class="m-0 text-white">Copyright &copy; <a href="#" class="text-white">Domain</a>. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 text-center text-md-right">
+                <p class="m-0 text-white">Designed by <a href="https://htmlcodex.com" class="text-white">HTML Codex</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

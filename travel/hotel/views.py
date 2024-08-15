@@ -38,7 +38,7 @@ def hotelhome(request):
 
         days_stayed = (cout_date - cin_date).days
 
-        hotels = Hotel.objects.filter(place__icontains=d)
+        hotels = Hotel.objects.filter(place__icontains=d,stock__gt=0)
 
         for hotel in hotels:
             total_price = hotel.price * days_stayed
@@ -52,7 +52,7 @@ def hotelhome(request):
             )
             booking.save()
 
-        return render(request, 'hotels.html')
+        return render(request, 'hotels.html',{'hotels':hotels})
 
     return render(request, 'hotelhome.html')
 
@@ -65,7 +65,6 @@ def hotelview(request,i):
 
 
 def hotels(request):
-    hotels = Hotel.objects.filter(stock__gt=0)
     return render(request,'hotels.html')
 
 

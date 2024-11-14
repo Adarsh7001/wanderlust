@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    .card {
+        background-color: rgb(16, 18, 19);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 10px;
+        transition: box-shadow 0.3s, border-color 0.3s;
+        text-align: center;
+        font-size: 0.9em;
+        margin-top:75px;
+        margin-bottom:75px;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .card-title {
+        font-size: 1.5em;
+        margin-bottom: 5px;
+        text-decoration: none;
+    }
+    .card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    .card:hover {
+        box-shadow: 0 0 10px gold;
+        border-color: gold;
+    }
+    .card:hover .card-title {
+        color: gold;
+    }
+</style>
+{% endblock %}
+
+{% block title %}
+<title>Tour Packages</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1 style="color:rgb(219, 206, 90);font-size:60px;margin-top:60px;">Perfect Tour Packages,</h1>
+        <h1 style="color:rgb(219, 206, 90);font-size:60px;">At Your Finger Tips!</h1>
+        {% for i in p %}
+        <div class="col-sm-3">
+            <a href="{% url 'package:packageview' i.id%}" class="card-link">
+                <div class="card">
+                    <img src="{{ i.image.url }}" class="card-img-top" alt="Package Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.name }}</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+
+
+

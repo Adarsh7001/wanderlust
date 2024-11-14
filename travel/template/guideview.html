@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block style %}
+    <style>
+        .font {
+            font-family: serif;
+        }
+        .card {
+            background-color: rgb(16, 18, 19);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px;
+            transition: box-shadow 0.3s, border-color 0.3s;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 75px;
+            margin-bottom: 75px;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 1em;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+       .btn-black {
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    padding: 8px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    text-decoration: none;
+}
+
+        .btn-black:hover {
+            background-color: gold;
+            color: black;
+            border-color: gold;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}
+    <title>guideview</title>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-bottom:75px;">
+    <div class="row">
+        <div class="col-sm-3">
+                <div class="card">
+                    <img src="{{ gd.image.url }}" class="card-img-top" alt="Package Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ gd.name }}</h5>
+                        <h5 class="card-title">Rs. {{ gd.price }} / Hr</h5>
+                    </div>
+                </div>
+
+        </div>
+        <div class="col-sm-8">
+            <p class="font" style="color:rgb(219, 206, 90);font-size:40px;text-align:center;margin-top:55px;">MEET {{gd.guide_name}}:</p>
+            <p class="font">Our expert travel guide who provides a comprehensive and tailored travel experience, meticulously crafting personalized itineraries that align with your unique interests and preferences, ensuring every moment of your journey is extraordinary. They offer invaluable insider tips on the best local spots, hidden treasures, and off-the-beaten-path attractions that are often overlooked, allowing you to explore India beyond the usual tourist destinations. Additionally, they deliver in-depth cultural insights and stories that immerse you in the diverse heritage and traditions of India, while also offering practical advice on everything from navigating local transportation and finding the finest accommodations to discovering the most authentic dining experiences. By booking a session with our guides, you gain access to a wealth of knowledge and expertise designed to make your travel experience as enriching, seamless, and unforgettable as possible.</p>
+            <p>Languages known: {{ gd.languages }}</p>
+            <a href="{% url 'website:bookservice' service_type='guide' service_id=gd.id %}"><button class="btn-black">Book</button></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

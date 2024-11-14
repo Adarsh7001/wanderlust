@@ -1,0 +1,140 @@
+body{
+background-color:black;
+color:white;
+font:family:serif;}
+
+.custom-icons {
+    color: rgb(219, 206, 90);
+    transition: color 0.3s ease;
+}
+
+.custom-icons i,
+.custom-icons span {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+    position: relative; }
+
+.custom-icons i {
+    font-size: 1em;
+}
+
+.custom-icons i:nth-last-of-type(-n+4) {
+    font-size: 1.5em;
+}
+
+.custom-icons i:nth-last-of-type(-n+4)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 50%;
+    background-color: white;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.custom-icons i:nth-last-of-type(-n+4):hover::after {
+    visibility: visible;
+    width: 100%;
+    left: 0;
+}
+       .navbar {
+    background-color: black !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.navbar-brand {
+    color: gold !important;
+    font-weight: bold !important;
+}
+
+.navbar-brand:hover {
+    color: rgb(219, 206, 90) !important;
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    position: relative;
+    transition: color 0.3s ease !important;
+}
+
+.navbar-nav .nav-link::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: rgb(219, 206, 90);
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::before {
+    visibility: visible;
+    width: 100%;
+    left: 0;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: black !important;
+}
+
+.navbar-nav .dropdown-item {
+    position: relative;
+    transition: color 0.3s ease !important;
+    text-decoration: none !important;
+    color: gray; /* Set text color to gray */
+}
+
+.navbar-nav .dropdown-item::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    background-color: rgb(219, 206, 90);
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .dropdown-item:hover::before {
+    width: 100%;
+    left: 0;
+}
+
+/* Change background color on active (click) state */
+.navbar-nav .dropdown-item:active {
+    background-color: rgb(219, 206, 90) !important;
+    color: black !important; /* Change text color to black on click for contrast */
+}
+
+}
+.btn-outline-success {
+    color: white !important; /* Text color by default */
+    border-color: white !important; /* Border color by default */
+    background-color: transparent !important; /* Transparent background by default */
+}
+
+.btn-outline-success:hover {
+    color: black !important; /* Text color on hover */
+    background-color: rgb(219, 206, 90) !important; /* Background color on hover */
+    border-color: rgb(219, 206, 90) !important; /* Border color on hover */
+}
+
+.form-control {
+    color: white !important;
+    background-color: black !important;
+    border-color: white !important;
+}
+
+.form-control::placeholder {
+    color: white !important;
+}
+
+
+
+
+

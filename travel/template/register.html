@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<style>
+    .form-container {
+        background-color: rgb(16, 18, 19);
+        color: gold;
+        padding: 30px;
+        width: 600px;
+        margin: 50px auto;
+        border-radius: 15px;
+    }
+    .form-control {
+        width: 80%;
+        padding: 12px;
+        margin: 20px auto;
+        border-radius: 10px;
+        background-color: transparent;
+        color: gold;
+        border: 2px solid rgb(116, 125, 128);
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        display: block;
+    }
+    .form-control::placeholder {
+        color: rgb(219, 206, 90);
+    }
+    .form-control:hover, .form-control:focus {
+        background-color: gold;
+        color: black;
+        border-color: gold;
+        outline: none;
+    }
+    .form-control[type="submit"] {
+        width: auto;
+        padding: 12px 24px;
+        background-color: gold;
+        color: black;
+        margin: 20px auto;
+        display: block;
+        font-weight: bold;
+        border: 2px solid gold;
+        border-radius: 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .form-control[type="submit"]:hover {
+        background-color: black;
+        color: gold;
+    }
+    .form-control[type="submit"]:active {
+        background-color: darkgoldenrod;
+        color: black;
+    }
+    h2 {
+        text-align: center;
+        color: gold;
+        margin-bottom: 20px;
+    }
+    .login-link {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .login-link a {
+        color: gold;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .login-link a:hover {
+        color: white;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}
+
+{% block title %}
+<title>Register</title>
+{% endblock %}
+
+{% block content %}
+<script>
+    function validateMobile() {
+        const mobileInput = document.querySelector('input[name="m"]');
+        const mobilePattern = /^[0-9]{10}$/;
+        if (!mobilePattern.test(mobileInput.value)) {
+            alert('Please enter a valid 10-digit mobile number');
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<form class="form-container" onsubmit="return validateMobile()" method="post">
+    {% csrf_token %}
+    <h2>Sign Up</h2>
+    <div class="mb-3">
+        <input type="text" class="form-control" name="u" placeholder="Enter Username">
+    </div>
+    <div class="mb-3">
+        <input type="password" class="form-control" name="p" placeholder="Password">
+    </div>
+    <div class="mb-3">
+        <input type="password" class="form-control" name="cp" placeholder="Confirm Password">
+    </div>
+    <div class="mb-3">
+        <input type="email" class="form-control" name="e" placeholder="Email">
+    </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" name="m" placeholder="Enter Mobile Number">
+    </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" name="f" placeholder="First Name">
+    </div>
+    <div class="mb-3">
+        <input type="text" class="form-control" name="l" placeholder="Last Name">
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="form-control" value="Submit">
+    </div>
+    <div class="login-link">
+        <p>Already have an account? <a href="{% url 'website:user_login' %}">Login</a></p>
+    </div>
+</form>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}
+
+
+
+

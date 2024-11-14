@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+    td, th {
+        color: white;
+        border: 1px solid rgb(219, 206, 90);
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        background-color: rgb(16, 18, 19);
+        color: rgb(219, 206, 90);
+    }
+
+
+    table caption {
+        color: rgb(219, 206, 90);
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    table thead {
+        border-bottom: 2px solid rgb(219, 206, 90);
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="container" style="color: white; background-color: rgb(16, 18, 19); padding: 20px; border-radius: 10px; margin-top: 50px; margin-bottom: 50px;">
+    <h1 style="color: rgb(219, 206, 90); text-align: center;">Your Bookings</h1>
+
+    {% if bookings %}
+        <table class="table table-dark" style="margin-top: 35px; margin-bottom: 35px;">
+            <thead>
+                <tr>
+                    <th scope="col">Service</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Booking Date</th>
+                    <th scope="col">Service Dates</th>
+                    <th scope="col">Amount Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr>
+                    <td>{{ booking.service_type }}</td>
+                    <td>
+                        {% if booking.hotel %}
+                            {{ booking.hotel.name }}
+                        {% elif booking.package %}
+                            {{ booking.package.name }}
+                        {% elif booking.guide %}
+                            {{ booking.guide.name }}
+                        {% else %}
+                            Unknown Service
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if booking.hotel and booking.hotel.hotel_image %}
+                            <img src="{{ booking.hotel.hotel_image.url }}" alt="Hotel Image" style="width: 100px; height: auto;">
+                        {% elif booking.package and booking.package.image %}
+                            <img src="{{ booking.package.image.url }}" alt="Package Image" style="width: 100px; height: auto;">
+                        {% elif booking.guide and booking.guide.image %}
+                            <img src="{{ booking.guide.image.url }}" alt="Guide Image" style="width: 100px; height: auto;">
+                        {% else %}
+                            No Image
+                        {% endif %}
+                    </td>
+                    <td>{{ booking.date|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        {% if booking.hotel %}
+                            {% with booking.hotel.hotelbooking_set.last as hotel_booking %}
+                                {% if hotel_booking %}
+                                    Check-in: {{ hotel_booking.check_in_date|date:"Y-m-d" }}<br>
+                                    Check-out: {{ hotel_booking.check_out_date|date:"Y-m-d" }}
+                                {% else %}
+                                    No booking information available.
+                                {% endif %}
+                            {% endwith %}
+                        {% elif booking.package %}
+                            <strong>Package Dates:</strong><br>
+                            Check-in: {{ booking.package.check_in_date|date:"Y-m-d" }}<br>
+                            Check-out: {{ booking.package.check_out_date|date:"Y-m-d" }}
+                        {% elif booking.guide %}
+                            <strong>Guide Date:</strong><br>
+                            {{ booking.guide.date|date:"Y-m-d" }}  <!-- Assuming guide date is available -->
+                        {% else %}
+                            No service information available.
+                        {% endif %}
+                    </td>
+                    <td>{{ booking.amount }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>You have no bookings at the moment.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+

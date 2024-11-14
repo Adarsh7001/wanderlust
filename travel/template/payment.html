@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Payment</title>
+{% endblock %}
+{% block style %}
+<style>
+    .payment-container {
+        background-color: rgb(20,25,25);
+        color: white;
+        height: 350px;
+        width: 300px;
+        margin: 5% auto 10%;
+        border-radius: 10px;
+        border: 3px solid rgb(219, 206, 90); /* Golden border */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .payment-container:hover {
+        border-color: rgb(219, 206, 90);
+        box-shadow: 0 0 15px rgb(219, 206, 90);
+    }
+    .payment-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="payment-container">
+    <form class="payment-form" action="{% url 'website:status' payment.name %}" method="POST">
+        {% csrf_token %}
+        <script
+            src="https://checkout.razorpay.com/v1/checkout.js"
+            data-key="rzp_test_PWhGmAwZRgvpt4"
+            data-amount="{{payment.amount}}"
+            data-currency="{{payment.currency}}"
+            data-order_id="{{payment.id}}"
+            data-buttontext="Pay with Razorpay"
+            data-name="WANDERLUST"
+            data-description="explore the world with us"
+            data-image="https://example.com/your_logo.jpg"
+            data-prefill.name="{{payment.name}}"
+            data-prefill.email="demo@example.com"
+            data-theme.color="#F37254"
+        ></script>
+        <input type="hidden" custom="Hidden Element" name="hidden"/>
+    </form>
+</div>
+{% endblock %}
